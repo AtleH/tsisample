@@ -11,7 +11,7 @@
         <script src="./chartData.js"></script>
     </head>
     <body style="font-family: 'Segoe UI', sans-serif;">
-        <div id="chart1" style="width: 100%; height: 600px;"></div>
+        <div id="chart1" style="width: 100%; height: 160px;"></div>
         <script>
             window.onload = function() {
                 
@@ -20,23 +20,23 @@
                 var to = new Date("2021-05-21T12:00:00.000Z");
 
                 var eventValueMapping = {
-                    badEvent: {
+                    Alarm: {
                         color: '#FD625E'
                     },
-                    goodEvent: {
-                        color: '#3599B8'
+                    Warning: {
+                        color: '#F2C80F'
                     }
                 }
 
                 var valueMapping = {
-                    state1: {
-                        color: '#F2C80F'
+                    OK: {
+                        color: 'lightblue'
                     }, 
-                    state2: {
-                        color: '#FD625E'
+                    Warning: {
+                        color: '#F2C80F'
                     },
-                    state3: {
-                        color:'#3599B8'
+                    Alarm: {
+                        color:'#FD625E'
                     }
                 }
 
@@ -52,17 +52,16 @@
                     brushMoveEndAction: () => {}
                 }
                 var chartDataOptions = [
-                    {}, 
                     {
                         dataType: 'events',
                         valueMapping: eventValueMapping,
-                        height: 50, 
-                        eventElementType: 'diamond', 
+                        height: 20, 
+                        eventElementType: 'teardrop', 
                         onElementClick: onElementClick},
                     {
                         dataType: 'categorical', 
                         valueMapping: valueMapping, 
-                        height: 100, 
+                        height: 30, 
                         onElementClick: onElementClick, 
                         rollupCategoricalValues: true
                     }
