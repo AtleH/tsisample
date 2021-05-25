@@ -11,7 +11,7 @@
         <script src="./chartData.js"></script>
     </head>
     <body style="font-family: 'Segoe UI', sans-serif;">
-        <div id="chart1" style="width: 100%; height: 160px;"></div>
+        <div id="chart1" style="width: 100%; height: 200px;"></div>
         <script>
             window.onload = function() {
                 
@@ -46,24 +46,35 @@
                 var lineChart = new tsiClient.ux.LineChart(document.getElementById('chart1'));
                 var chartOptions = {
                     theme: 'light', 
-                    legend: 'shown', 
+                    legend: 'hidden', 
                     grid: true, 
-                    tooltip: true, 
+                    tooltip: true,
                     brushMoveEndAction: () => {}
                 }
+                var searchSpan = {
+                    from: from.toISOString(),
+                    to: to.toISOString(),
+                    bucketSize: '2m'
+                };
                 var chartDataOptions = [
                     {
+                        color: "red",
+                        alias: "asdasdasdasd",
                         dataType: 'events',
                         valueMapping: eventValueMapping,
-                        height: 20, 
+                        visibilityState: [true, ["DtectLoss", "REAL"]],
+                        height: 40, 
                         eventElementType: 'teardrop', 
-                        onElementClick: onElementClick},
+                        onElementClick: onElementClick
+                    },
                     {
                         dataType: 'categorical', 
                         valueMapping: valueMapping, 
-                        height: 30, 
+                        visibilityState: [true, ["DtectLoss"]],
+                        height: 20, 
+                        searchSpan: searchSpan,
                         onElementClick: onElementClick, 
-                        rollupCategoricalValues: true
+                        rollupCategoricalValues: false
                     }
                 ]
                 lineChart.render(chartData, chartOptions, chartDataOptions);
